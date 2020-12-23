@@ -2,6 +2,7 @@ const http = require("http");
 const { spawn } = require("child_process");
 
 const DEFAULT_CONFIG = {
+  hostname: '127.0.0.1',
   port: 8080,
   reload: "/reloadConfig",
   listeners: {},
@@ -43,6 +44,6 @@ const requestListener = function (req, res) {
 };
 
 const server = http.createServer(requestListener);
-server.listen(config.port || DEFAULT_CONFIG.port);
+server.listen(config.port || DEFAULT_CONFIG.port, config.hostname || DEFAULT_CONFIG.hostname);
 
 console.log(`listening on ${config.port || DEFAULT_CONFIG.port}`);
